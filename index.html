@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>智能社--http://www.zhinengshe.com</title>
+    <style></style>
+    <script src="js/jquery.js"></script>
+    <script>
+        function createPromiseJQueryAjax(url){
+            return new Promise((resolve,reject)=>{
+                $.ajax({
+                    url,
+                    dataType:'json',
+                    success(r){
+                        resolve(r);
+                    },
+                    error(err){
+                        reject(err);
+                    }
+                })
+            })
+        }
+
+        Promise.all([
+            createPromiseJQueryAjax('data/a.txt'),
+            createPromiseJQueryAjax('data/b.txt'),
+            createPromiseJQueryAjax('data/c.txt')
+
+        ]).then(r=>{
+            let [r1,r2,r3] = r;
+            console.log(r2);
+
+        },err=>{
+            alert('错了');
+        });
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
